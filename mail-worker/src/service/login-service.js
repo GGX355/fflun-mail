@@ -23,7 +23,7 @@ import { normalizeEmail, parseBooleanEnv, toTrimmedString } from '../utils/input
 function validatePassword(password, { allowLegacy = false } = {}) {
 	if (typeof password !== 'string' || password.length === 0) throw new BizError(t('emailAndPwdEmpty'), 400);
 	// Existing CloudMail users may still have a 6–9 character password created by 3.0.0.
-	// They must remain able to log in; the stronger minimum applies only to new/reset passwords.
+	// They must remain able to log in; the stronger minimum applies to new accounts.
 	if (!allowLegacy && password.length < 10) throw new BizError(t('pwdMinLength'), 400);
 	if (password.length > 128) throw new BizError(t('pwdLengthLimit'), 400);
 	return password;

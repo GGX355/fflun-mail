@@ -170,15 +170,6 @@ function submitPwd() {
     return
   }
 
-  if (form.password.length < 10) {
-    ElMessage({
-      message: t('pwdLengthMsg'),
-      type: 'error',
-      plain: true,
-    })
-    return
-  }
-
   if (form.password !== form.newPwd) {
     ElMessage({
       message: t('confirmPwdFailMsg'),

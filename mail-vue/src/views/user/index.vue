@@ -946,15 +946,6 @@ function updatePwd() {
     return
   }
 
-  if (userForm.password.length < 10) {
-    ElMessage({
-      message: t('pwdLengthMsg'),
-      type: 'error',
-      plain: true,
-    })
-    return
-  }
-
   settingLoading.value = true
   userSetPwd({password: userForm.password, userId: userForm.userId}).then(() => {
     setPwdShow.value = false

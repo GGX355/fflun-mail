@@ -70,7 +70,7 @@ const userService = {
 
 	async resetPassword(c, params, userId) {
 		const password = params?.password;
-		if (typeof password !== 'string' || password.length < 10) throw new BizError(t('pwdMinLength'), 400);
+		if (typeof password !== 'string' || password.length === 0) throw new BizError(t('emailAndPwdEmpty'), 400);
 		if (password.length > 128) throw new BizError(t('pwdLengthLimit'), 400);
 		const { salt, hash } = await cryptoUtils.hashPassword(password, cryptoUtils.iterationsFromEnv(c.env));
 		const uid = toId(userId, 'userId');

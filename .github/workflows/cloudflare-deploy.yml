@@ -145,7 +145,7 @@ jobs:
       PROJECT_LINK: ${{ vars.PROJECT_LINK }}
       AI_MODEL: ${{ vars.AI_MODEL || '@cf/meta/llama-3.1-8b-instruct' }}
       ANALYSIS_CACHE: ${{ vars.ANALYSIS_CACHE || 'false' }}
-      PASSWORD_PBKDF2_ITERATIONS: ${{ vars.PASSWORD_PBKDF2_ITERATIONS || '150000' }}
+      PASSWORD_PBKDF2_ITERATIONS: ${{ vars.PASSWORD_PBKDF2_ITERATIONS || '100000' }}
       PASSWORD_REHASH_ON_LOGIN: ${{ vars.PASSWORD_REHASH_ON_LOGIN || 'true' }}
       EMAIL_TRASH_RETENTION_DAYS: ${{ vars.EMAIL_TRASH_RETENTION_DAYS || '30' }}
       INIT_LOCKED: ${{ vars.INIT_LOCKED || 'false' }}
@@ -385,13 +385,13 @@ jobs:
           if as_bool('CLOUDFLARE_EMAIL'):
               lines += ['[[send_email]]', 'name = "email"', '']
 
-          iterations = int(os.environ.get('PASSWORD_PBKDF2_ITERATIONS', '150000'))
+          iterations = int(os.environ.get('PASSWORD_PBKDF2_ITERATIONS', '100000'))
           retention = int(os.environ.get('EMAIL_TRASH_RETENTION_DAYS', '30'))
           lines += [
               '[vars]',
               f'ai_model = {toml_string(os.environ.get("AI_MODEL", ""))}',
               f'analysis_cache = {str(as_bool("ANALYSIS_CACHE")).lower()}',
-              f'password_pbkdf2_iterations = {max(100000, min(iterations, 2000000))}',
+              f'password_pbkdf2_iterations = {max(100000, min(iterations, 100000))}',
               f'password_rehash_on_login = {str(as_bool("PASSWORD_REHASH_ON_LOGIN", True)).lower()}',
               f'email_trash_retention_days = {max(0, min(retention, 3650))}',
               f'init_locked = {str(as_bool("INIT_LOCKED")).lower()}',

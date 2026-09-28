@@ -213,7 +213,7 @@ Configure these under **Repository → Settings → Secrets and variables → Ac
 | `PROJECT_LINK` | No | Optional project/support URL. |
 | `AI_MODEL` | No | Workers AI model. Defaults to `@cf/meta/llama-3.1-8b-instruct`. |
 | `ANALYSIS_CACHE` | No | `true` or `false`. Defaults to `false`. |
-| `PASSWORD_PBKDF2_ITERATIONS` | No | Defaults to `150000`. |
+| `PASSWORD_PBKDF2_ITERATIONS` | No | Fixed at `100000`, the Cloudflare Workers PBKDF2 limit. |
 | `PASSWORD_REHASH_ON_LOGIN` | No | Defaults to `true`. |
 | `EMAIL_TRASH_RETENTION_DAYS` | No | Defaults to `30`. |
 | `INIT_LOCKED` | No | `true` blocks protected initialization outside a maintenance window. Defaults to `false`. |

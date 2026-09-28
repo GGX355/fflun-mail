@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
 const setting = fs.readFileSync(path.join(root, 'src/service/setting-service.js'), 'utf8');
-const workflow = fs.readFileSync(path.join(root, '../.github/workflows/_deploy-cloudflare.yml'), 'utf8');
+const workflow = fs.readFileSync(path.join(root, '../.github/workflows/cloudflare-deploy.yml'), 'utf8');
 
 assert.match(setting, /encryptSettingSecrets/);
 assert.match(setting, /decryptSettingSecrets/);

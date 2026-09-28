@@ -26,11 +26,11 @@ describe('CloudMail runtime smoke', () => {
 		expect(body?.data?.checks ?? body?.checks).toBeUndefined();
 	});
 
-	it('hashes new passwords at the industrial policy cost while accepting old hashes for rehash', async () => {
+	it('hashes new passwords within the Workers limit while accepting old hashes for rehash', async () => {
 		expect(cryptoUtils.iterationsFromEnv({})).toBe(100_000);
 		expect(cryptoUtils.iterationsFromEnv({ password_pbkdf2_iterations: '1' })).toBe(100_000);
 		const salt = cryptoUtils.generateSalt();
-		const legacy = await cryptoUtils.genHashPassword('correct horse battery staple', salt, 100_000);
+		const legacy = await cryptoUtils.genHashPassword('correct horse battery staple', salt, 10_000);
 		expect(await cryptoUtils.verifyPassword('correct horse battery staple', salt, legacy)).toBe(true);
 		expect(cryptoUtils.needsRehash(legacy, 100_000)).toBe(true);
 	});
